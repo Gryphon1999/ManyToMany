@@ -9,8 +9,13 @@ namespace ManyToManyRelation.DAL
         {
 
         }
-        public DbSet<Student> students { get; set; }
-        public DbSet<Course> courses { get; set; }
-        public DbSet<StudentCourse> StudentCourses { get; set; }
+        public DbSet<Post> posts { get; set; }
+        public DbSet<Category> categories { get; set; }
+        public DbSet<PostCategory> PostCategories { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder){
+            modelBuilder.Entity<PostCategory>().HasKey(pc=>new {pc.PostId,pc.CategoryId});
+            modelBuilder.Entity<Post>().Property(p=>p.Title).IsRequired();
+            modelBuilder.Entity<Category>().Property(p=>p.Title).IsRequired();
+        }
     }
 }
