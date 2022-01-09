@@ -7,7 +7,6 @@
     <table class="table">
         <thead class="table-dark">
             <tr>
-                <th>#</th>
                 <th>Title</th>
                 <th>Category</th>
                 <th>Action</th>
@@ -15,21 +14,18 @@
         </thead>
         <tbody class="table-primary">
             <tr>
-                @{
-                    var sn = 1;
-                    @foreach (var item in Model)
-                    {
-                    <tr>
-                        <td>@(sn++)</td>
-                        <td>@item.Title</td>
-                        <td>@string.Join(", ",item.PostCategories.Select(p=>p.Category.Title))</td>
-                        <td>
-                            <a asp-route-id="@item.Id" asp-action="Edit" asp-controller="Post">Edit</a> ||
-                            <a asp-route-id="@item.Id" asp-action="Delete" asp-controller="Post">Delete</a>
-                        </td>
-                    </tr>
-                    }
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@string.Join(", ",item.PostCategories.Select(p=>p.Category.Title))</td>
+                    <td>
+                        <a asp-route-id="@item.Id" asp-action="Edit" asp-controller="Post">Edit</a> ||
+                        <a asp-route-id="@item.Id" asp-action="Delete" asp-controller="Post">Delete</a>
+                    </td>
+                </tr>
                 }
+
             </tr>
         </tbody>
     </table>
